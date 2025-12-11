@@ -72,3 +72,60 @@ Different applications put different types of loads on the Ubuntu Server. It is 
 <img width="401" height="245" alt="image" src="https://github.com/user-attachments/assets/a103d052-414a-4b3b-a410-66602c95737f" />
 <img width="416" height="357" alt="image" src="https://github.com/user-attachments/assets/4d8c5e02-9910-493b-a23e-1d9ad6eec4ef" />
 
+-----------------------------------------------------------------------------------------------------------------------------
+4. Monitoring Strategy explaining measurement approach for each application
+
+   📊 Monitoring Strategy by Application
+1. stress-ng (CPU test) — CPU Monitoring
+Approach:
+•	Use top or htop to observe CPU usage in real time.
+•	Record CPU percentage for each core during the test.
+•	Use vmstat 1 to monitor system load averages.
+Metrics Measured:
+•	CPU utilisation
+•	Load average
+•	Temperature (optional if tools installed)
+________________________________________
+2. stress-ng (memory test) — RAM Monitoring
+Approach:
+•	Run free -h before and during the memory stress test.
+•	Use top to see memory consumption by the stress-ng process.
+Metrics Measured:
+•	Total RAM used
+•	Available memory
+•	Swap usage (if any)
+________________________________________
+3. fio — Disk I/O Monitoring
+Approach:
+•	Use iostat -x 1 to measure disk read/write speeds and I/O wait.
+•	Analyse fio’s built-in results (IOPS, bandwidth, latency).
+•	Collect baseline disk usage using df -h.
+Metrics Measured:
+•	Read/write throughput
+•	IOPS (input/output operations per second)
+•	Disk latency and I/O wait time
+________________________________________
+4. iperf3 — Network Monitoring
+Approach:
+•	Run iperf3 in server mode on the Ubuntu Server and client mode on the workstation.
+•	Record bandwidth results shown directly by iperf3.
+•	Use iftop (optional) to observe real-time network flow.
+Metrics Measured:
+•	Network bandwidth (Mbps / Gbps)
+•	Packet loss (if any)
+•	Transfer rate over time
+________________________________________
+5. Apache Web Server — Mixed Load Monitoring
+Approach:
+•	Generate HTTP requests (e.g., using a browser or curl).
+•	Use top to observe Apache processes.
+•	Use journalctl -u apache2 for service logs.
+•	Use vmstat 1 for system-level metrics.
+Metrics Measured:
+•	CPU and RAM usage of Apache
+•	Active connections
+•	Response time (manual testing with curl)
+•	Network traffic during requests
+
+Summary:
+We will monitor each application using a combination of Linux CLI tools viewed over SSH. CPU tests put a load on the processor. Memory tests monitor RAM usage. I/O tests record disk performance. Network tests generate load to measure bandwidth. Server tests run loads to assess behaviour of a real-world service. The purpose of the tool is to help accurately measure how the Ubuntu server will deal with various types of workload.
