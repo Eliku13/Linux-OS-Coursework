@@ -20,3 +20,28 @@ STEP 3 — Test SSH Login Using Your Key (NO PASSWORD)
 STEP 4 — Final SSH login test
 <img width="349" height="164" alt="image" src="https://github.com/user-attachments/assets/e29024ab-6206-40b6-a8fd-def4ba043556" />
 
+------------------------------------------------------------------------------------------------------------------------------
+
+2. Configure a firewall permitting SSH from one specific workstation only
+   Step 2.1 — Enable UFW on the server
+   <img width="401" height="58" alt="image" src="https://github.com/user-attachments/assets/365d29ea-937b-4388-896d-4cbd30355a57" />
+
+   Step 2.2 — Allow SSH from ONLY your workstation IP
+   <img width="410" height="41" alt="image" src="https://github.com/user-attachments/assets/ca7f2196-51bd-47d4-ba0c-04386c4764cb" />
+
+Step 2.3 — Deny all other SSH
+
+Step 2.4 — Check the ruleset
+<img width="347" height="107" alt="image" src="https://github.com/user-attachments/assets/66ab2d2c-c8ce-446c-95f7-ded951ea050b" />
+
+----------------------------------------------------------------------------------------------------------------------------
+3. Manage users and implement privilege management, creating a non-root
+administrative user.
+
+Step 3.1 — Create the user
+<img width="399" height="241" alt="image" src="https://github.com/user-attachments/assets/d216f6d3-7ced-4fc6-8eb9-6734c1a68b46" />
+
+Step 3.2 — Add the user to sudo group (admin rights)
+
+
+
