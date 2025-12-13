@@ -98,6 +98,33 @@ Step 7 — Performance Data Table (Deliverable 2)
 Step 8 — Performance Visualisations (Deliverable 3)
 
 
+Chart 1 — CPU Usage (Baseline vs Under Load)
+
+Baseline CPU ≈ 31%
+
+CPU under stress ≈ 100%
+
+What this shows:
+CPU-intensive workloads fully utilise processor resources and significantly increase load.
+
+✅ Chart 2 — Memory Usage (Baseline vs Under Load)
+
+Baseline memory used ≈ 2.4 GiB
+
+Memory under stress ≈ 2.8 GiB
+
+What this shows:
+Memory-intensive workloads increase RAM usage but system remains stable (no swap).
+
+✅ Chart 3 — Network Performance
+
+Throughput ≈ 11.6 Gbps
+
+What this shows:
+High-performance host-only networking between VMs with minimal latency.
+
+
+
 
 
 
