@@ -29,21 +29,98 @@ Step 2.3 — Verify configuration
 
 <img width="310" height="35" alt="image" src="https://github.com/user-attachments/assets/0fce47a4-e457-417f-9be8-121edd6bce81" />
 
+I enabled automatic security updates with unattended-upgrades. Having security update options automatically is better than manual install where security patching may be delayed.
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+3. Configure fail2ban for enhanced intrusion detection
+
+
+Step 3.1 — Install fail2ban
+Step 3.2 — Enable and start fail2ban
+
+Step 3.3 — Check status
+
+<img width="601" height="172" alt="image" src="https://github.com/user-attachments/assets/d45649ef-907f-4c62-a293-9801dc941c57" />
+
+
+Step 3.4 — Verify SSH jail
+
+<img width="361" height="116" alt="image" src="https://github.com/user-attachments/assets/972a7000-0d37-467a-bedd-89ddf33878ce" />
+
+Monitoring SSH auth by configuring fail2ban was installed. It will restrict the access to IP addresses that seem suspicious such as failing to login repeatedly; this will prevent brute-force attacks too.
 
 
 
+------------------------------------------------------------------------------------------------------------------------------
+
+4. Create a security baseline verification script (`security-baseline.sh`) that runs on the
+server (executed via SSH) and verifies all security configurations from Phases 4 and 5.
+
+Step 4.1 — Create the script
+#!/bin/bash
+
+echo "=== Security Baseline Verification ==="
+
+echo "[+] SSH Configuration"
+grep -E "PasswordAuthentication no|PermitRootLogin no" /etc/ssh/sshd_config
+
+echo "[+] Firewall Status"
+ufw status
+
+echo "[+] AppArmor Status"
+aa-status
+
+echo "[+] Automatic Updates"
+grep Unattended /etc/apt/apt.conf.d/20auto-upgrades
+
+echo "[+] fail2ban Status"
+systemctl status fail2ban --no-pager
 
 
+Step 4.2 — Make executable
 
+<img width="406" height="150" alt="image" src="https://github.com/user-attachments/assets/7186f1b7-f027-44eb-8925-1b92aaf25832" />
 
+To validate the key security configuration which were done in phases 4 and 5 a security baseline verification script is created. This script will check SSH hardening, firewall rules, AppArmor status, Automatic updates and fail2ban operation. The Baseline verification security script will provide a repeatable way to verify security.
 
+------------------------------------------------------------------------------------------------------------------------------
+5. Create a remote monitoring script (`monitor-server.sh`) that runs on your
+workstation, connects via SSH, and collects performance metrics from the server
 
+Step 5.1 — Create script on WORKSTATION
+#!/bin/bash
 
+SERVER="adminuser@192.168.56.101"
 
+echo "=== Remote Server Monitoring ==="
 
+ssh $SERVER << EOF
+echo "Hostname:"
+hostname
 
+echo "Uptime:"
+uptime
 
+echo "CPU Load:"
+top -bn1 | head -n 5
 
+echo "Memory Usage:"
+free -h
+
+echo "Disk Usage:"
+df -h
+EOF
+
+Step 5.2 — Make executable
+chmod +x monitor-server.sh
+
+Step 5.3 — Run the script
+
+<img width="469" height="354" alt="image" src="https://github.com/user-attachments/assets/0d3e95ae-bced-496f-b020-661affb82851" />
+
+A script for collecting performance metrics on the server through Remote SSH has been developed. This bash script can check the load of CPU, Memory, Disk use, and uptime. You can get the info without connecting to the server.
 
 
 
