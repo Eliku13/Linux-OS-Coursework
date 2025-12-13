@@ -119,6 +119,8 @@ Step 8 — Performance Visualisations (Deliverable 3)
 
 
 
+Baseline and load conditions for CPU, memory and network workloads were comared with performance visualisations. The load testing forced the CPU utilization high. But the memory consumption remained under control. There was no swapping. The workstation and server exhibited very high throughput, confirmed by the network testing.
+
 Step 9 — Optimisation
 
 Optimisation 2 — Stop unnecessary services
