@@ -95,6 +95,53 @@ Step 7 — Performance Data Table (Deliverable 2)
 
 
 
+Step 8 — Performance Visualisations (Deliverable 3)
+
+
+
+
+
+<img width="400" height="262" alt="image" src="https://github.com/user-attachments/assets/bb562f6f-11b9-44d0-b33f-b9955eac418c" />
+
+
+
+
+
+<img width="370" height="252" alt="image" src="https://github.com/user-attachments/assets/5fbe8331-ca9b-4eb5-969b-650d43a8ad6e" />
+
+
+
+
+
+
+<img width="398" height="251" alt="image" src="https://github.com/user-attachments/assets/38bb5f53-7852-40f4-8f7a-b71318741390" />
+
+
+
+
+Step 9 — Optimisation
+
+Optimisation 2 — Stop unnecessary services
+systemctl list-unit-files --type=service
+sudo systemctl stop apache2
+
+
+
+
+<img width="353" height="328" alt="image" src="https://github.com/user-attachments/assets/7a1925e8-6d98-440a-8583-12866fdb14ed" />
+
+
+
+Step 10 — Optimisation Analysis
+
+To enhance performance, we lowered memory swappiness and disabled unnecessary services. As a result of these changes, memory pressure was less and CPU usage was less under load. Quantitative results show improved system responsiveness and less resource contention.
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
