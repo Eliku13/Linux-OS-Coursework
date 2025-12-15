@@ -76,56 +76,52 @@ Different applications put different types of loads on the Ubuntu Server. It is 
 4. Monitoring Strategy explaining measurement approach for each application
 
    📊 Monitoring Strategy by Application
-1. stress-ng (CPU test) — CPU Monitoring
-Approach:
-•	Use top or htop to observe CPU usage in real time.
-•	Record CPU percentage for each core during the test.
-•	Use vmstat 1 to monitor system load averages.
-Metrics Measured:
-•	CPU utilisation
-•	Load average
-•	Temperature (optional if tools installed)
+1.For Real-Time CPU Monitoring, Use the top or htop to See CPU Usage.
+ • Get the CPU percentage of each core during the test.
+• Use the command vmstat 1 to check the system load averages. The CPU utilization, load average, and temperature will be measured (optional if tools installed).
 ________________________________________
-2. stress-ng (memory test) — RAM Monitoring
-Approach:
-•	Run free -h before and during the memory stress test.
-•	Use top to see memory consumption by the stress-ng process.
-Metrics Measured:
-•	Total RAM used
-•	Available memory
-•	Swap usage (if any)
+2. Stress-ng memory test ram monitoring 7 words.
+Method.
+•	Make sure to run free -h both before and during the memory stress test.
+•	Use top to view memory usage by stress-ng process.
+Measured Metrics.
+•	Complete RAM utilization.
+•	Existing memory.
+•	If there are any changes to swap usage.
 ________________________________________
-3. fio — Disk I/O Monitoring
-Approach:
-•	Use iostat -x 1 to measure disk read/write speeds and I/O wait.
-•	Analyse fio’s built-in results (IOPS, bandwidth, latency).
-•	Collect baseline disk usage using df -h.
-Metrics Measured:
-•	Read/write throughput
-•	IOPS (input/output operations per second)
-•	Disk latency and I/O wait time
+3. Monitoring block device and I/O latency.
+Approach.
+•	iostat -x 1 provides disk read and write speeds and I/O wait.
+
+•	Examine fio's internal performance metrics including IOPS, throughput, and latency.
+•	Use df –h to collect baseline disk usage.
+Metrics Evaluated.
+•	Read/Write Speed
+•	It measures performance quality per second.
+•	Delay in disk and I/O operations.
 ________________________________________
-4. iperf3 — Network Monitoring
-Approach:
-•	Run iperf3 in server mode on the Ubuntu Server and client mode on the workstation.
-•	Record bandwidth results shown directly by iperf3.
-•	Use iftop (optional) to observe real-time network flow.
-Metrics Measured:
-•	Network bandwidth (Mbps / Gbps)
-•	Packet loss (if any)
-•	Transfer rate over time
+4. iperf3 – A tool for monitoring network performance
+Manner.
+•	Use iperf3 in server mode in the Ubuntu Server and client mode in the workstation.
+•	Iperf3 will directly show the results in bandwidth.
+•	Use the 'iftop' command to see the flow through the network in real time (optional). 
+System Characterization.
+
+•	Speed of internet in megabits per second or gigabits per second.
+•	Missing packets (if any).
+•	Transfer Speed in Time.
 ________________________________________
-5. Apache Web Server — Mixed Load Monitoring
-Approach:
-•	Generate HTTP requests (e.g., using a browser or curl).
-•	Use top to observe Apache processes.
-•	Use journalctl -u apache2 for service logs.
-•	Use vmstat 1 for system-level metrics.
-Metrics Measured:
-•	CPU and RAM usage of Apache
-•	Active connections
-•	Response time (manual testing with curl)
-•	Network traffic during requests
+5. Monitoring of mixed loads using the Apache web server.
+Method.
+•	Make requests with HTTP (e.g., use a browser or curl).
+•	Use top to view Apache processes.
+•	Utilize journalctl -u apache2 for service tracking logs.
+•	Run vmstat 1 in order to view metrics.
+Measured Metrics.
+•	The consumption of CPU and RAM of Apache. 
+•	"Active Links"
+•	Time taken for response (manual testing with curl).
+•	The data transmission while requesting
 
 Summary:
-We will monitor each application using a combination of Linux CLI tools viewed over SSH. CPU tests put a load on the processor. Memory tests monitor RAM usage. I/O tests record disk performance. Network tests generate load to measure bandwidth. Server tests run loads to assess behaviour of a real-world service. The purpose of the tool is to help accurately measure how the Ubuntu server will deal with various types of workload.
+By using an SSH connection, we will monitor each application with Linux CLI tools.  Processing tests exert load pressure on the CPU RAM usage is monitored by memory tests. I/O test records how well disk performs Bandwidth measurement is performed by generating load. Tests being run on the server to imitate a real-life service behaviour under load. The tool's purpose is to accurately evaluate how the Ubuntu server will respond to different kinds of workloads.
